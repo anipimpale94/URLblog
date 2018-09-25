@@ -1,0 +1,13 @@
+.showLink{
+	text-align: left;
+	margin: 3px;
+	background-color: #eff0f1;
+	border-radius: 5px;
+	padding: 10px;
+}
+
+.linkIcon{
+	margin: 0px 10px;
+	max-width: 100%;
+
+}

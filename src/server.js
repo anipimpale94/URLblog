@@ -1,40 +1,47 @@
 const express = require('express');
 const app = express();
+var bodyParser = require('body-parser');
+const path = require('path');
+const port = process.env.PORT || 5000;
 
-// let links = {
-//   {
-//     Name: 'Ani',
-//     Link: 'www.google.com',
-//     LinkName: 'Google',
-//     Points: '500'
-//   },
-//   {
-//     Name: 'Ani1',
-//     Link: 'www.facebook.com',
-//     LinkName: 'Facebook',
-//     Points: '700'
-//   },
-//   {
-//     Name: 'Ani2',
-//     Link: 'www.stackoverflow.com',
-//     LinkName: 'Stackoverflow',
-//     Points: '1500'
-//   }
-// }
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+app.use(express.static(path.join(__dirname, 'build')));
+
+let links = [
+  {
+    'name': 'ani',
+    'link': 'www.google.com',
+    'linkname': 'google',
+    'points': '-500'
+  },
+  {
+    'name': 'ani1',
+    'link': 'www.facebook.com',
+    'linkname': 'facebook',
+    'points': '700'
+  },
+  {
+    'name': 'ani2',
+    'link': 'www.stackoverflow.com',
+    'linkname': 'stackoverflow',
+    'points': '1500'
+  }
+]
 /**
  * Returns a list of Links that users have
  * submitted.
  */
 app.get('/links', (req, res) => {
-  // res.send('Implement this endpoint')
+  //res.send('Implement this endpoint')
   res.send(links)
 });
 
 /**
  * Saves a Link that a user submitted.
  */
-app.post('/', (req, res) => {
-  // res.send('Implement this endpoint')
+app.post('/home', (req, res) => {
+  res.send('Implement this endpoint')
 });
 
-app.listen(3000, () => console.log('API running on port 3000'));
+app.listen(port, () => console.log('API running on port '+ port));

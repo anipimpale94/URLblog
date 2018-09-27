@@ -9,27 +9,35 @@ class Link extends Component {
 	render() {
 		let score = this.props.Points;
 		let scoreString = ""
+		let scoreColor = 'black'
 		if(score > 0){
 			scoreString = "+" + this.props.Points.toString()
+			scoreColor = 'green'
 		}
-		else scoreString = this.props.Points.toString()
-		let color = 'black'
+		else {
+			scoreString = this.props.Points.toString()
+			if(score < 0) {			
+				scoreColor = 'red'
+			}
+		}
+		let thumbColor1 = 'black'
+		let thumbColor2 = 'black'
 		if(this.props.VoteRecord > 0) {
-			color = 'green'
+			thumbColor1 = 'green'
 		}
 		if(this.props.VoteRecord < 0) {
-			color = 'red'
+			thumbColor2 = 'red'
 		}
 
 		return(
 			<div className="showLink">
-				<div className="pointsDisplay">
+				<div className="pointsDisplay" style={{ color: scoreColor}}>
 					{scoreString}
 				</div>
 				<div className="voteStatus">
-					<FontAwesomeIcon icon={faThumbsUp} style={{ color: color}}/>
+					<FontAwesomeIcon icon={faThumbsUp} style={{ color: thumbColor1}} />
 					<br/>
-					<FontAwesomeIcon icon={faThumbsDown} />
+					<FontAwesomeIcon icon={faThumbsDown} style={{ color: thumbColor2}} />
 				</div>
 			
 				<div className="linkInfo">

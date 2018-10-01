@@ -2,11 +2,13 @@ const express = require('express');
 const app = express();
 var bodyParser = require('body-parser');
 const path = require('path');
+var session = require('client-sessions');
 const port = process.env.PORT || 5000;
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, 'build')));
+app.use(session());
 
 let links = [
   {
@@ -40,7 +42,9 @@ app.get('/links', (req, res) => {
 /**
  * Saves a Link that a user submitted.
  */
-app.post('/home', (req, res) => {
+app.post('/', (req, res) => {
+  var sessData = req.session;
+  sessData.Name = "foo";
   res.send('Implement this endpoint')
 });
 
